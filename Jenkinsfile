@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Integration') {
             steps {
-                junit "${WORKSPACE}/test-results/*.xml"
+                junit 'test.xml'
             }
         }
     }
