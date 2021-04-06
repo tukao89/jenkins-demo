@@ -18,6 +18,9 @@ pipeline {
                 sh 'npm test'
             }
         }
+        stage('Integration') {
+            junit 'test.xml'
+        }
     }
     post { 
         always { 
