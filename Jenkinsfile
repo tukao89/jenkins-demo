@@ -19,7 +19,9 @@ pipeline {
             }
         }
         stage('Integration') {
-            junit 'test.xml'
+            steps {
+                junit 'test.xml'
+            }
         }
     }
     post { 
