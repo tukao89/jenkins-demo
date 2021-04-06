@@ -11,13 +11,10 @@ pipeline {
         stage('Test app'){
           steps {
             sh 'npm install'
+            sh 'nohup node index.js &'
+            sh 'npm test'
+            junit 'test.xml'
           }
-        }
-        stage('Integration') {
-            steps {
-                sh 'npm test'
-                junit 'test.xml'
-            }
         }
     }
     post { 
