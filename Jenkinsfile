@@ -15,6 +15,7 @@ pipeline {
         }
         stage('Integration') {
             steps {
+                sh 'rm test.xml'
                 junit 'test.xml'
             }
         }
@@ -22,7 +23,7 @@ pipeline {
     post { 
         success{
             steps {
-                sh 'docker build -t nodejs-todolist .'
+                sh 'docker build -t jenkins-demo .'
                 sh 'nohup node index.js &'
                 sh 'npm test'
             }
