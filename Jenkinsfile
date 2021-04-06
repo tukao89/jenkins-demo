@@ -11,11 +11,11 @@ pipeline {
         stage('Test app'){
           steps {
             sh 'npm install'
-            sh 'npm test'
           }
         }
         stage('Integration') {
             steps {
+                sh 'npm test'
                 junit 'test.xml'
             }
         }
