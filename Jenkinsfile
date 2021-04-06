@@ -1,5 +1,7 @@
 pipeline {
-    agent 'jenkin-slave-node'
+    agent {
+        jenkin-slave-node
+    }
     stages {
         stage('Clone code') {
             steps {
