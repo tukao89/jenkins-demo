@@ -13,13 +13,6 @@ pipeline {
             sh 'npm install'
           }
         }
-        stage('Build image') {
-            steps {
-                sh 'docker build -t nodejs-todolist .'
-                sh 'nohup node index.js &'
-                sh 'npm test'
-            }
-        }
         stage('Integration') {
             steps {
                 junit 'test.xml'
@@ -27,6 +20,13 @@ pipeline {
         }
     }
     post { 
+        success{
+            steps {
+                sh 'docker build -t nodejs-todolist .'
+                sh 'nohup node index.js &'
+                sh 'npm test'
+            }
+        }
         always { 
             emailext body: '${DEFAULT_CONTENT}', subject: '${DEFAULT_SUBJECT}', to: 'tu.phunganh@gmail.com'
         }
