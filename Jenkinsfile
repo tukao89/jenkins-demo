@@ -3,7 +3,7 @@ pipeline {
         label 'jenkin-slave-node'
     }
     environment {
-        scannerHome = tool 'sonarQubeServer'
+        scannerHome = tool 'sonarQube'
     }
     stages {
         stage('Clone code') {
