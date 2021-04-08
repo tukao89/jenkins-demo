@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'jenkin-slave-node'
     }
+    environment {
+        scannerHome = tool 'sonarscan’
+    }
     stages {
         stage('Clone code') {
             steps {
@@ -15,6 +18,13 @@ pipeline {
             sh 'npm test'
             junit 'test.xml'
           }
+        }
+        stage('Sonar Qube'){
+            steps{
+                withSonarQubeEnv('sonarQubeServer') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
         }
     }
     post { 
